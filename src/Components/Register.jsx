@@ -159,7 +159,7 @@ const Register = () => {
                 onClose={() => setAlert({ type: false, message: '' })}
             />
 
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300">
+            <div className="w-full h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300">
                 <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
                     <h2 className="text-2xl font-bold mb-6 text-center text-indigo-600">Sign Up to Get Started</h2>
 

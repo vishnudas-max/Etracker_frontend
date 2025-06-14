@@ -9,8 +9,10 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import UserDashboard from "./Components/UserDashboard";
 
+
 import RequireAuth from './utils/RequireAuth';
 import RestrictAuth from './utils/RestrictAuth'; // ⬅️ for login/register
+import ExpenseDetails from "./Components/ExpenseDetails ";
 
 export default function App() {
  
@@ -24,6 +26,7 @@ export default function App() {
 
         {/* Protected route */}
         <Route path="dashboard/" element={<RequireAuth><UserDashboard /></RequireAuth>} />
+        <Route path="expense/:id/" element={<RequireAuth><ExpenseDetails /></RequireAuth>} />
       </Route>
     </Routes>
   );

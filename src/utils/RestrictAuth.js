@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { login, logout } from "../Redux/UserAuthSlice";
 import api from "../axiosconfig";
+import Loader from "../Components/Loader";
 
 const RestrictAuth = ({ children }) => {
   const isAuthenticated = useSelector(state => state.user.is_auth);
@@ -17,7 +18,8 @@ const RestrictAuth = ({ children }) => {
         dispatch(login({
           is_auth: res.data.is_authenticated,
           username: res.data.user.username,
-          user_id: res.data.user.id
+          user_id: res.data.user.id,
+          is_admin: res.data.user.is_admin
         }));
       } catch {
         dispatch(logout());
@@ -30,7 +32,7 @@ const RestrictAuth = ({ children }) => {
   }, [dispatch]);
 
   // Wait for auth check to complete
-  if (checkingAuth) return null; // or a spinner
+  if (checkingAuth) return <Loader isPage />
 
   // If already logged in, redirect to dashboard
   if (isAuthenticated) {
