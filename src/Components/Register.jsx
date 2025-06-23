@@ -140,11 +140,13 @@ const Register = () => {
 
         try{
             const response = await api.post('/register/',formData)
-            const message = response.data?.message
-            navigate('/',{ state: { successMessage: message } })
+            if(response.status == '201'){
+                const message = "Registration successful";
+                navigate('/',{ state: { successMessage: message } })
+            }
         }catch(error){
             const firstError = getFirstErrorMessage(error.response?.data)
-            showAlert(false, firstError);
+            showAlert(false, firstError || "Something went wrong. Please try again.");
         }
 
     };

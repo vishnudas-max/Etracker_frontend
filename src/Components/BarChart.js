@@ -4,10 +4,11 @@ import {Chart as ChartJS,BarElement,CategoryScale,LinearScale,Title,Tooltip,Lege
 import { useEffect, useState } from "react";
 import api from '../axiosconfig';
 import Loader from '../Components/Loader'
+import React from 'react'
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
-const BarChart = () => {
+const BarChart = ({refreshTrigger}) => {
   const [summery, setSummery] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,7 +26,7 @@ const BarChart = () => {
 
   useEffect(() => {
     fetchSummery();
-  }, []);
+  }, [refreshTrigger]);
 
   const labels = summery.map(item => item.label);
   const values = summery.map(item => item.total);
@@ -86,4 +87,4 @@ const BarChart = () => {
   );
 };
 
-export default BarChart;
+export default React.memo(BarChart);

@@ -15,6 +15,8 @@ const UserDashboard = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
+    const [refreshChart, setRefreshChart] = useState(false);
+
     const is_admin = useSelector(state => state.user.is_admin)
 
     // for notifications--
@@ -87,6 +89,7 @@ const UserDashboard = () => {
             setCategory('');
             setNote('');
             setDate('');
+            setRefreshChart(prev => !prev);
         } catch (error) {
             const firstError = getFirstErrorMessage(error.response?.data)
             showAlert(false, firstError);
@@ -207,7 +210,7 @@ const UserDashboard = () => {
 
                         </div>
                     }
-                    <BarChart />
+                    <BarChart refreshTrigger={refreshChart}/>
                     <div>
                     </div>
                 </div>
